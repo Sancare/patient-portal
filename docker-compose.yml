@@ -7,12 +7,16 @@ services:
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-app}
       # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-weakdefault}
       POSTGRES_USER: ${POSTGRES_USER:-app}
+      POSTGRES_STD_USER: ${POSTGRES_STD_USER:-patientport}
+      POSTGRES_STD_USER_PWD: ${POSTGRES_STD_USER_PWD:-defaultpwd}
+      POSTGRES_STD_DB: ${POSTGRES_STD_DB:-patientport}
     volumes:
       - database_data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
+      - ./initdb:/docker-entrypoint-initdb.d/:ro
+    ports:
+      - "127.0.0.1:5432:5432"
 ###< doctrine/doctrine-bundle ###
 
 volumes:
