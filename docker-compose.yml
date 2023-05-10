@@ -17,6 +17,8 @@ services:
       - ./initdb:/docker-entrypoint-initdb.d/:ro
     ports:
       - "127.0.0.1:5432:5432"
+    labels:
+      com.symfony.server.service-prefix: POSTGRES_STD_
 ###< doctrine/doctrine-bundle ###
 
 volumes:
