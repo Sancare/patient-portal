@@ -1,0 +1,77 @@
+/*
+Important accessiblity annoucement:
+
+It is very important that the website be as accessible as possible.
+To achieve this, extended testing with great zooms levels (>200%) should always be done to validate the behaviour of the website.
+Also, the website should behave properly when applying a font-scaling on the pages.
+
+Therefore the following rules should be enforced:
+    * Alaways use the rem unit on items that should grow with the font size
+    * Use the pixel unit on items that should stay the same at whatever font size (borders or paddings for instance)
+    * Validate the accessiblity of the website using the firefox dev tools after every change
+*/
+
+
+/* Colors */
+:root {
+    --sancare-bg-color: #3372d6;
+    --sancare-font-color: #FFFFFF;
+
+    --sancare-contentblock-header-bg-color: #1a54b0;
+
+    --sancare-contentblock-bg-color: #ffffff;
+    --sancare-inblock-font-color: #4a4a4a;
+    --sancare-contentblock-highlighted-bg-color: #E0E0E0;
+}
+
+html {
+    background-color: var(--sancare-bg-color);
+    color: var(--sancare-font-color);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+/* TODO: adjust this size using media queries */
+body {
+    width: 60%;
+    margin: auto;
+}
+
+.content-block__header {
+    background-color: var(--sancare-contentblock-header-bg-color);
+    color: var(--sancare-font-color);
+    padding: 10px 15px;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    font-weight: 700;
+}
+
+.content-block__body {
+    color: var(--sancare-inblock-font-color);
+    background-color: var(--sancare-contentblock-bg-color);
+    border-radius: 0 0 10px 10px;
+}
+.content-block__body--padded {
+    color: var(--sancare-inblock-font-color);
+    background-color: var(--sancare-contentblock-bg-color);
+    border-radius: 0 0 10px 10px;
+
+    padding: 10px 15px;
+}
+
+.content-block__body-item {
+    padding: 10px 15px;
+}
+.content-block__body-item:last-child {
+    border-radius: 0 0 10px 10px;
+}
+
+a.content-block__body-item {
+    display: block;
+    color: var(--sancare-inblock-font-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+a.content-block__body-item:hover {
+    background-color: var(--sancare-contentblock-highlighted-bg-color);
+}
