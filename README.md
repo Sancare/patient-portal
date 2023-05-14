@@ -28,7 +28,7 @@ You also need PHP with the appropriate extensions. You can install them with:
 sudo add-apt-repository ppa:ondrej/php
 sudo apt update
 
-sudo apt install php8.2 php8.2-xml php8.2-intl php8.2-pdo php8.2-mbstring php8.2-pgsql
+sudo apt install php8.2 php8.2-xml php8.2-intl php8.2-pdo php8.2-mbstring php8.2-pgsql php8.2-curl php8.2-zip
 ```
 
 Then install [composer](https://getcomposer.org/download/) and the [Symfony-cli](https://symfony.com/download).
@@ -52,7 +52,7 @@ You can then start the dev server with:
 symfony server:start
 ```
 
-The server should be available on a random port on localhost (See the output log for details)
+The server should be available on [http://localhost:8000]
 
 ### MacOS
 

@@ -40,7 +40,6 @@ final class Version20230510003059 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE SCHEMA public');
         $this->addSql('DROP SEQUENCE app_user_id_seq CASCADE');
         $this->addSql('DROP TABLE app_user');
         $this->addSql('DROP TABLE messenger_messages');
