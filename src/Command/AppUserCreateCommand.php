@@ -16,10 +16,10 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\AppUser;
 
 #[AsCommand(
-    name: 'sancare:user:create',
+    name: 'app:user:create',
     description: 'Add a short description for your command',
 )]
-class SancareUserCreateCommand extends Command
+class AppUserCreateCommand extends Command
 {
     protected $em;
     protected $passwordHasher;
