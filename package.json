@@ -11,7 +11,7 @@
         "webpack-cli": "^4.10.0",
         "webpack-notifier": "^1.15.0"
     },
-    "license": "UNLICENSED",
+    "license": "Apache-2.0",
     "private": true,
     "scripts": {
         "dev-server": "encore dev-server",

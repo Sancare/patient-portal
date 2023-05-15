@@ -38,8 +38,8 @@ class AppUserCreateCommand extends Command
     {
         $this
             ->addArgument('name', InputArgument::REQUIRED, 'Name of the user to register')
-            ->addArgument('email', InputArgument::REQUIRED, 'Email of the user to register')
-            ->addOption('password', "p", InputOption::VALUE_REQUIRED, 'Password of the user. It is advised to pass it from an environment variable to avoid leaks')
+            ->addOption('email', null, InputArgument::VALUE_REQUIRED, 'Optionnal email of the user to register')
+            ->addOption('password', "p", InputOption::VALUE_REQUIRED, 'Password of the user. If unspecified, a prompt will open. It is also advised touse an environment variable to avoid leaks')
         ;
     }
 
@@ -47,15 +47,16 @@ class AppUserCreateCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
+        // Start with some input validation
         $username = $input->getArgument('name');
-        $email = $input->getArgument('email');
-
-        // Input validation
-        $emailConstraint = new Assert\Email();
-        // use the validator to validate the value
-        if (count($this->validator->validate($email, $emailConstraint)) > 0) {
-            $io->error(sprintf("The given email is invalid (\"%s\")", $email));
-            return 1;
+        $email = $input->getOption('email');
+        if ($email !== null && strlen($email) > 0) {
+            $emailConstraint = new Assert\Email();
+            // use the validator to validate the value
+            if (count($this->validator->validate($email, $emailConstraint)) > 0) {
+                $io->error(sprintf("The given email is invalid (\"%s\")", $email));
+                return 1;
+            }
         }
 
         // Prompt the password of not already given
@@ -70,16 +71,19 @@ class AppUserCreateCommand extends Command
             return 1;
         }
 
-        $existingUser = $this->em
-            ->createQuery("SELECT u FROM App:AppUser u WHERE u.email = :email OR u.username = :username")
-            ->setParameter("email", $email)
-            ->setParameter("username", $username)
-            ->getResult();
-
-        if (count($existingUser) > 0) {
+        $matchingUsernames = $this->em->getRepository()->findBy(['username' => $username]);
+        if (count($matchingUsernames)) {
             $io->info("The requested user already exists.");
 
             return Command::SUCCESS;
+        }
+        if ($email !== null && strlen($email) > 0) {
+            $matchingEmail = $this->em->getRepository()->findBy(['email' => $email]);
+            if (count($matchingEmail)) {
+                $io->info("The requested user already exists.");
+
+                return Command::SUCCESS;
+            }
         }
 
         $newUser = new AppUser();

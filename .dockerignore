@@ -1,0 +1,8 @@
+.vscode
+initdb
+node_modules
+tests
+tools
+var
+vendor
+.env.test

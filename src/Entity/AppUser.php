@@ -18,7 +18,7 @@ class AppUser implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private ?string $username = null;
 
-    #[ORM\Column(length: 180, unique: true)]
+    #[ORM\Column(length: 180, nullable: true, unique: true)]
     private ?string $email = null;
 
     #[ORM\Column]
