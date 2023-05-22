@@ -1,6 +1,6 @@
 # patient-portal
 
-**WARNING**: This repo is still very much in early development. It is not usable yet, and the release will be the subject of an adjustment.
+**WARNING**: This repo is still very much in early development. It is not usable yet, and the release will be the subject of an announcement.
 
 🔭 A web-based repository to share information about clinal trials and statistical analyses on real-life data
 
